@@ -1,6 +1,8 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import CartWidget from './CartWidget';
+
 
 function NavBar(){
     return(
@@ -15,13 +17,14 @@ function NavBar(){
                 </Nav>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
+                    <CartWidget />
                     <Navbar.Text>
-                        <a href="#login">Usuario</a>
+                        <a href="#login">Iniciar Sesión</a>
                     </Navbar.Text>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-    </>  
+    </>
     );
 }
 
