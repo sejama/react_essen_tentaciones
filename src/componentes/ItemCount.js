@@ -5,33 +5,39 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function ItemCount(props){
+    
     let cantidad = parseInt(props.cantidad);
-    let [seleccionado, setSeleccionado] = useState(0);
+    const [seleccionado, setSeleccionado] = useState(0);
+    
+    function handleAumentar(){
+        if(seleccionado < cantidad){
+            setSeleccionado(seleccionado+1)
+        }
+    }
 
+    function handleDisminuir(){
+        if(seleccionado > 0){
+            setSeleccionado(seleccionado-1)
+        }
+    }
     return (
         <>
             <Container>
                 <Row className="square border border-1" style={{'borderRadius':'5px'}}>
-                    <Col>
+                    <Col className="text-center text-md-right">
                         <DashCircleDotted color="black" size={25} style={{marginRight: 10}} 
-                            onClick={() => {
-                                if(seleccionado >= 0){
-                                    setSeleccionado(seleccionado--)
-                                }}
-                                } />
+                            onClick={handleDisminuir} />
                     </Col>
-                    <Col>
-                       {seleccionado}
+                    <Col className="text-center text-md-right">
+                        {seleccionado}
                     </Col>
-                    <Col>
+                    <Col className="text-center text-md-right">
                         <PlusCircleDotted color="black" size={25} style={{marginRight: 10}} 
-                            onClick={() => {
-                                if(seleccionado <= cantidad){
-                                    setSeleccionado(seleccionado++)
-                                }}}  />
+                            onClick={handleAumentar}  />
                     </Col>
                 </Row>
             </Container>
+            
         </>
     )
 }
