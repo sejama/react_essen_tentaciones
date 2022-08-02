@@ -3,20 +3,20 @@ import { DashCircleDotted, PlusCircleDotted} from 'react-bootstrap-icons';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import ButtonAdd from './ButtonAdd'
 
 function ItemCount(props){
     
-    let cantidad = parseInt(props.cantidad);
-    const [seleccionado, setSeleccionado] = useState(0);
+    const [seleccionado, setSeleccionado] = useState(props.inicial);
     
     function handleAumentar(){
-        if(seleccionado < cantidad){
+        if(seleccionado < props.cantidad){
             setSeleccionado(seleccionado+1)
         }
     }
 
     function handleDisminuir(){
-        if(seleccionado > 0){
+        if(seleccionado > props.inicial){
             setSeleccionado(seleccionado-1)
         }
     }
@@ -35,6 +35,9 @@ function ItemCount(props){
                         <PlusCircleDotted color="black" size={25} style={{marginRight: 10}} 
                             onClick={handleAumentar}  />
                     </Col>
+                </Row>
+                <Row>
+                    <ButtonAdd />
                 </Row>
             </Container>
             
