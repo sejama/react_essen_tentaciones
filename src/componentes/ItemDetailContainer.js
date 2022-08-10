@@ -6,13 +6,14 @@ import items from "./datos";
 const  getItem = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() =>{
-            resolve(items)
+            resolve(items[3])
         }, 2000);
     })    
 }
    
 function ItemDetailContainer() {
-    const [datos, setDatos] = useState([])
+    
+    const [dato, setDatos] = useState([])
 
     useEffect(() => {
         getItem().then((respuesta) => {
@@ -22,7 +23,7 @@ function ItemDetailContainer() {
 
   return (
     <>
-        <ItemDetail item={datos}/>
+        <ItemDetail dato={dato}/>
     </>
   )
 }
