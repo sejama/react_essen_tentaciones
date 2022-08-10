@@ -9,6 +9,7 @@ function App() {
     <div>
       <NavBar />
       <ItemDetailContainer /> 
+      <br /><br />
       <ItemListContainer nombre="Titulo del ItemListContainer"/>
     </div>
   );
