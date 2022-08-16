@@ -12,9 +12,10 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" component={<ItemListContainer nombre="Titulo del ItemListContainer"/>} />
-          <Route path="/detalle" component={<ItemDetailContainer />} />
-          <NavBar  />
+          <Route path="/" element={<ItemListContainer nombre="Titulo del ItemListContainer"/>} />
+          <Route path="/detalle/:idItem" element={<ItemDetailContainer />} />
+          <Route path="/category/:idCategory" element={<ItemListContainer nombre="Titulo del ItemListContainer con filtro"/>} />
+
         </Routes>
       </BrowserRouter>
     </div>

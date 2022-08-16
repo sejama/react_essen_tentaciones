@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import ItemCount from './ItemCount';
+import { Link } from "react-router-dom";
 
 function Item({dato}) {
   return (
@@ -9,9 +9,12 @@ function Item({dato}) {
       <Card.Body>
         <Card.Title>{dato.title}</Card.Title>
         <Card.Text>{dato.description}</Card.Text>
-        <Button variant="secondary">Ver detalle del producto</Button>{''}
-        <Card.Text>$ {dato.price}</Card.Text>
-        <ItemCount inicial={dato.min} cantidad={dato.stock} />
+        <Link to={`/detalle/${dato.id}`} >
+          <Button variant="secondary">
+              Ver detalle del producto
+          </Button>
+        </Link>
+        <Card.Text>${dato.price}</Card.Text>
         <Card.Text> Stock Disponible { dato.stock}</Card.Text>
         
       </Card.Body>

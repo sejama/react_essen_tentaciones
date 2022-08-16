@@ -8,7 +8,7 @@ import ButtonAdd from './ButtonAdd'
 function ItemCount(props){
     
     const [seleccionado, setSeleccionado] = useState(props.inicial);
-    
+   
     function handleAumentar(){
         if(seleccionado < props.cantidad){
             setSeleccionado(seleccionado+1)

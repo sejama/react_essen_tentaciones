@@ -1,24 +1,24 @@
 import React, { useEffect, useState }from 'react'
 import ItemDetail from './ItemDetail'
 import items from "./datos";
+import { useParams } from "react-router-dom";
 
-
-const  getItem = () => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() =>{
-            resolve(items[3])
-        }, 2000);
-    })    
-}
-   
 function ItemDetailContainer() {
+    const [dato, setDatos] = useState([]);
+    let parametro = parseInt(useParams().idItem);
+    function getItem(){
+        return new Promise((resolve, reject) => {
+                let itemRequestes = items.find(item => item.id === parametro);
+                      
+                itemRequestes === undefined ? reject("Item not found") :  resolve(itemRequestes); 
+                
+       })    
+   }
     
-    const [dato, setDatos] = useState([])
-
     useEffect(() => {
-        getItem().then((respuesta) => {
-            setDatos(respuesta);
-        })
+        getItem()
+            .then((respuesta) => {setDatos(respuesta);})
+            .catch((err) => alert(err))
     }, [])
 
   return (
