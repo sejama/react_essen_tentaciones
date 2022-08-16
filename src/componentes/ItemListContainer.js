@@ -18,14 +18,14 @@ function ItemListContainer({nombre}){
     useEffect(() => {
         getItems()
             .then((respuesta) => {
-                if(parametro === undefined){
+                if(isNaN(parametro)){
                     setDatos(respuesta);
                 }else{
                     let itemFilters = respuesta.filter(item => item.category === parametro); 
                     setDatos(itemFilters);
                 }
             })
-    }, [])
+    }, [parametro])
     return (
         <>
             <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>

@@ -19,7 +19,7 @@ function ItemDetailContainer() {
         getItem()
             .then((respuesta) => {setDatos(respuesta);})
             .catch((err) => alert(err))
-    }, [])
+    }, [parametro])
 
   return (
     <>
