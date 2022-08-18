@@ -5,21 +5,22 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ButtonAdd from './ButtonAdd'
 
-function ItemCount(props){
-    
-    const [seleccionado, setSeleccionado] = useState(props.inicial);
+function ItemCount({inicial,cantidad,id}){
+    let ini = inicial || 1;
+    const [seleccionado, setSeleccionado] = useState(ini);
    
     function handleAumentar(){
-        if(seleccionado < props.cantidad){
+        if(seleccionado < cantidad){
             setSeleccionado(seleccionado+1)
         }
     }
 
     function handleDisminuir(){
-        if(seleccionado > props.inicial){
+        if(seleccionado > ini){
             setSeleccionado(seleccionado-1)
         }
     }
+    
     return (
         <>
             <Container>
@@ -37,7 +38,7 @@ function ItemCount(props){
                     </Col>
                 </Row>
                 <Row>
-                    <ButtonAdd />
+                    <ButtonAdd total={seleccionado} id={id}/>
                 </Row>
             </Container>
             

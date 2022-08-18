@@ -1,12 +1,12 @@
 import Button from 'react-bootstrap/Button';
 import Swal from 'sweetalert2'
 
-function ButtonAdd(){
-    
+function ButtonAdd({total,id}){
+    let texto = "Total "+ total + "del id "+ id;
     function onAdd(){
         Swal.fire({
             title: 'Desea agragar al carrito?',
-            text: 'Agregando producto al carrito!',
+            text: 'Agregando producto al carrito!' + texto,
             showDenyButton: true,
             showCancelButton: true,
             confirmButtonText: 'Confirmar',
@@ -20,11 +20,10 @@ function ButtonAdd(){
               Swal.fire('Seguir comprando', '', 'info')
             }
           })
-        console.log("Agregado al carrito");
     }
     return (
         <>
-            <Button variant="secondary" onClick={onAdd}>Agregar al carrito</Button>{''}
+            <Button variant="secondary" onClick={onAdd}>Agregar al carrito</Button>
         </>
     )
 }

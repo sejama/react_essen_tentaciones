@@ -10,7 +10,7 @@ function Item({dato}) {
         <Card.Title>{dato.title}</Card.Title>
         <Card.Text>{dato.description}</Card.Text>
         <Link to={`/detalle/${dato.id}`} >
-          <Button variant="secondary">
+          <Button variant="secondary" >
               Ver detalle del producto
           </Button>
         </Link>

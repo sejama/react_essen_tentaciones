@@ -9,7 +9,9 @@ export default function ItemDetail({dato}) {
         <h3>Descripción: {dato.description}</h3>
         <Image src={dato.pictureUrl} alt="Image" />
         <p>$ {dato.price}</p>
-        <ItemCount inicial={dato.min} cantidad={dato.stock} />
+        <p>Cantidad Minima: {dato.min}</p>
+        <p>Stock Disponible: {dato.stock}</p>
+        <ItemCount inicial={dato.min} cantidad={dato.stock} id={dato.id}/>
     </>
   )
 }
