@@ -50,7 +50,6 @@ export const CartProvider = ({children}) => {
                 removeItem,
                 clear,
                 
-               
             }
         }>
             {children}
