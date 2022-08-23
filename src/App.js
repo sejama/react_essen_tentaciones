@@ -4,17 +4,14 @@ import NavBar from './componentes/NavBar';
 import ItemListContainer from './componentes/ItemListContainer';
 import ItemDetailContainer from './componentes/ItemDetailContainer';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-import { createContext}  from 'react';
-
-export const  CartContext = createContext('');
+import { CartProvider } from './componentes/CartContext'
 
 function App() {
   return (
     <div>
+      
       <BrowserRouter>
-        <CartContext.Provider value='Sebastian'>
-          
+        <CartProvider >
         <NavBar />
         <Routes>
           <Route path="/" element={<ItemListContainer nombre="Titulo del ItemListContainer"/>} />
@@ -22,7 +19,7 @@ function App() {
           <Route path="/category/:idCategory" element={<ItemListContainer nombre="Titulo del ItemListContainer con filtro"/>} />
           <Route path="*" element={<h1>Elemento no encontrado</h1>} />
         </Routes>
-        </CartContext.Provider>
+        </CartProvider>
       </BrowserRouter>
     </div>
   );

@@ -1,16 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 import { Link } from "react-router-dom";
 
-import { CartContext } from '../App';
 
 
 function Item({dato}) {
-  const cart = useContext(CartContext);
-  console.log(cart)
   return (
     <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src={dato.pictureUrl} />

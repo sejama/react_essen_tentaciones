@@ -11,7 +11,7 @@ export default function ItemDetail({dato}) {
         <p>$ {dato.price}</p>
         <p>Cantidad Minima: {dato.min}</p>
         <p>Stock Disponible: {dato.stock}</p>
-        <ItemCount inicial={dato.min} cantidad={dato.stock} id={dato.id}/>
+        <ItemCount item={dato}/>
     </>
   )
 }

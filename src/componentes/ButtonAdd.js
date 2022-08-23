@@ -1,14 +1,16 @@
 import Button from 'react-bootstrap/Button';
 import Swal from 'sweetalert2'
+import {useCartContext} from './CartContext'
 
-function ButtonAdd({total,id}){
-    let texto = "Total "+ total + "del id "+ id;
+function ButtonAdd({total,item}){
+  const {addItem} = useCartContext();
+    let texto = "Total "+ total + "de "+ item.title;
     function onAdd(){
         Swal.fire({
             title: 'Desea agragar al carrito?',
             text: 'Agregando producto al carrito!' + texto,
             showDenyButton: true,
-            showCancelButton: true,
+            showCancelButton: false,
             confirmButtonText: 'Confirmar',
             denyButtonText: `Seguir comprando`,
             cancelButtonText: `Cancelar`
@@ -16,9 +18,8 @@ function ButtonAdd({total,id}){
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
               Swal.fire('Confirmar', '', 'success')
-            } else if (result.isDenied) {
-              Swal.fire('Seguir comprando', '', 'info')
-            }
+              addItem(item,total);
+            } 
           })
     }
     return (
