@@ -53,6 +53,9 @@ function Cart() {
                       <td>${parseFloat(item.quantity * item.price).toFixed(2)}</td>
                       <td>
                         <Button variant="danger" onClick={() => { removeItem(item) }}>Eliminar</Button>
+                        <Link to={`/detalle/${item.id}`} >
+                          <Button variant="secondary" >Agregar Cantidad</Button>
+                        </Link>
                       </td>
                     </tr>
                     )
