@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
 import items from "./datos";
+import { DotSpinner } from '@uiball/loaders'
 
 function getItems(){
         
@@ -31,7 +32,14 @@ function ItemListContainer({nombre}){
             <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
                 <h1 style={{color: 'blue'}}>{nombre}</h1>
             </div>
-            <ItemList datos={datos} />
+            {
+            datos.length >0 ?
+                <ItemList datos={datos} />
+                :
+                <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+                    <DotSpinner size={50} speed={0.5} color="black" />
+                </div>
+            }
         </>
     );
 }

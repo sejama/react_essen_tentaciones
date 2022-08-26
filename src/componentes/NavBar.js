@@ -32,7 +32,7 @@ function NavBar(){
                 </Nav>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
-                    <CartWidget />
+                    <Link to="/Cart"><CartWidget /></Link>
                     <Navbar.Text>
                         <Link to="#login">Iniciar Sesión</Link>
                     </Navbar.Text>
