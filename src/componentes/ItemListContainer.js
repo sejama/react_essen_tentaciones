@@ -1,31 +1,50 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
-import items from "./datos";
-import { DotSpinner } from '@uiball/loaders'
+import { DotSpinner } from '@uiball/loaders';
+import db from '../services/firebase';
+import { getDocs, collection, query, where } from 'firebase/firestore';
 
-function getItems(){
+/*function getItems(){
         
     return new Promise((resolve) => {
         setTimeout(() => resolve(items), 2000);
     })
+}*/
+function getItems() {
+    return new Promise((resolve) => {
+        const itemsCollection = collection(db,"items");
+        getDocs(itemsCollection).then(snapshot => {
+            const docsData = snapshot.docs.map(doc => { return { ...doc.data(), id: doc.id}})
+            resolve(docsData);
+        })
+    })
+}
+function getFilterItems(parametro) {
+    return new Promise((resolve) => {
+        const itemsCollection = collection(db,"items");
+        const q = query(itemsCollection, where("category", "==", parametro))
+        getDocs(q).then(snapshot => {
+            const docsData = snapshot.docs.map(doc => { return { ...doc.data(), id: doc.id}})
+            resolve(docsData);
+        })
+    })
 }
 
 function ItemListContainer({nombre}){
-    
     const [datos, setDatos] = useState([]);
     let parametro = parseInt(useParams().idCategory);
-    
     useEffect(() => {
-        getItems()
-            .then((respuesta) => {
-                if(isNaN(parametro)){
-                    setDatos(respuesta);
-                }else{
-                    let itemFilters = respuesta.filter(item => item.category === parametro); 
-                    setDatos(itemFilters);
-                }
+        if(isNaN(parametro)){
+            getItems().then((respuesta) => {
+                setDatos(respuesta);
             })
+        }else{
+            getFilterItems(parametro).then((respuesta) => {
+                setDatos(respuesta);
+            })
+        }
+        
     }, [parametro])
     return (
         <>
