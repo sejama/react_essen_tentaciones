@@ -3,8 +3,8 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-import { getFirestore } from "firebase/firestore";
-
+import { getFirestore, collection ,addDoc } from "firebase/firestore";
+import  items  from "../componentes/datos";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBk6aB37B5jq4_6POKQRvnAxxuB37JJxQ4",
@@ -18,4 +18,15 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
+
+export async function saveItems(){
+  const collectionItems = collection(db,"items");
+  for (const item of items) {
+    const respuesta = await addDoc(collectionItems, item)  
+    console.log("Doc agregado: ",respuesta)
+  }
+  
+ 
+}
+
 export default db;

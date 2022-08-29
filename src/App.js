@@ -7,14 +7,15 @@ import Cart from './componentes/Cart';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './componentes/CartContext'
 
-
+import {saveItems} from "./services/firebase"
 
 function App() {
 
   return (
     <div>
-      
       <BrowserRouter>
+      <button onClick={() => saveItems()}>Cargar Datos</button>
+      <button onClick={saveItems}>Cargar Datos</button>
         <CartProvider >
         <NavBar />
         <Routes>
