@@ -24,12 +24,11 @@ function getItem(parametro){
 function ItemDetailContainer() {
     const [dato, setDatos] = useState([]);
     let parametro = useParams().idItem;
-    console.log(parametro);
     useEffect(() => {
         getItem(parametro)
             .then((respuesta) => {setDatos(respuesta);})
             .catch((err) => alert(err))
-    },[])
+    },[parametro])
   return (
     <>
         <ItemDetail dato={dato}/>

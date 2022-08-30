@@ -21,6 +21,7 @@ export const CartProvider = ({children}) => {
         setCart(newCart);
     }
 */
+
     function addItem(item, quantity) {
         if(isInCart(item)){    
             setCart(cart.map(product => {
@@ -30,6 +31,7 @@ export const CartProvider = ({children}) => {
             setCart([...cart, {...item, quantity}]);
         }
     }
+
     function removeItem(item){ // Remover un item del cart por usando su id
         setCart(cart.filter(prodcut => prodcut.id !== item.id))
     } 
@@ -49,8 +51,6 @@ export const CartProvider = ({children}) => {
                 isInCart,
                 removeItem,
                 clear,
-                
-               
             }
         }>
             {children}

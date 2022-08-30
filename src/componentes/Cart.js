@@ -1,15 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {useCartContext} from './CartContext'
 import {Link} from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import { addDoc, collection } from 'firebase/firestore'
+import db from "../services/firebase";
+import { useForm } from "react-hook-form";
 
 
 function Cart() {
   const { cart, removeItem, clear } = useCartContext();
- 
+  const [orderFirebase, setOrder] = useState({id: '', complete: false});
   let total = 0, num = 0;
   
+  async function sendOrder(){
+    const order = {
+      buyer: data, /*{
+        firstname: data.firstname ,
+        lastname: data.lastname ,
+        user: data.user ,
+        phone: data.phone ,
+        email: data.email ,
+      },*/
+      items:[...cart]
+    }
+    const orderColection = collection(db,"orders");
+    //const orderTrue = await addDoc(orderColection, order);
+    //setOrder({id: orderTrue.id, complete: true});
+    addDoc(orderColection, order).then(({id}) => setOrder({id: id, complete: true}));
+
+  
+    alert("Compra confirmada: " + orderFirebase.id);
+  }
+
+  const { register, handleSubmit } = useForm();
+  const [data, setData] = useState("");
+
   return (
     <>
       {cart.length === 0 ?
@@ -65,6 +91,18 @@ function Cart() {
           </Table>
           <h5>Total: $ {parseFloat(total).toFixed(2)}</h5>
           <Button variant="danger" onClick={() => { clear() }}>Vaciar Carrito</Button>
+          <div>
+            <form onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
+            <input {...register("firstName", { required: true, maxLength: 20 })} placeholder="First name" />
+            <input {...register("lastName", { required: true, maxLength: 20 })} placeholder="Last name" />
+            <input {...register("user", { required: true})} placeholder="User" />
+            <input type="number"  {...register("phone", { required: true, maxLength: 20 })} placeholder="Phone" />
+            <input type="email" {...register("email")} placeholder="correo@correo.com" />
+            <p>{data}</p>
+            <input type="submit" />
+            </form>
+          </div>
+          <Button variant="success" onClick={sendOrder}>Confirmar Compra</Button>
         </>    
       }
     </>
