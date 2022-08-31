@@ -28,9 +28,8 @@ function Cart() {
     //const orderTrue = await addDoc(orderColection, order);
     //setOrder({id: orderTrue.id, complete: true});
     addDoc(orderColection, order).then(({id}) => setOrder({id: id, complete: true}));
-
-  
     alert("Compra confirmada: " + orderFirebase.id);
+    console.log("Compra confirmada: ", orderFirebase.id)
   }
 
   const { register, handleSubmit } = useForm();
