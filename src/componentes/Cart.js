@@ -22,7 +22,9 @@ function Cart() {
         phone: data.phone ,
         email: data.email ,
       },*/
-      items:[...cart]
+      items:[...cart],
+      total: total,
+      date: new Date(),
     }
     const orderColection = collection(db,"orders");
     //const orderTrue = await addDoc(orderColection, order);
