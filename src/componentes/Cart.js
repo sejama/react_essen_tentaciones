@@ -11,31 +11,23 @@ import { useForm } from "react-hook-form";
 function Cart() {
   const { cart, removeItem, clear } = useCartContext();
   const [orderFirebase, setOrder] = useState({id: '', complete: false});
+  const { register, handleSubmit } = useForm();
+  const [data, setData] = useState("");
   let total = 0, num = 0;
   
   async function sendOrder(){
     const order = {
-      buyer: data, /*{
-        firstname: data.firstname ,
-        lastname: data.lastname ,
-        user: data.user ,
-        phone: data.phone ,
-        email: data.email ,
-      },*/
+      buyer: {data}, 
       items:[...cart],
       total: total,
       date: new Date(),
     }
     const orderColection = collection(db,"orders");
-    //const orderTrue = await addDoc(orderColection, order);
-    //setOrder({id: orderTrue.id, complete: true});
-    addDoc(orderColection, order).then(({id}) => setOrder({id: id, complete: true}));
-    alert("Compra confirmada: " + orderFirebase.id);
-    console.log("Compra confirmada: ", orderFirebase.id)
-  }
+    const orderTrue = await addDoc(orderColection, order);
 
-  const { register, handleSubmit } = useForm();
-  const [data, setData] = useState("");
+    setOrder({id: orderTrue.id, complete: true});
+    alert("Compra confirmada: " + orderFirebase.id);
+  }
 
   return (
     <>

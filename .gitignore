@@ -4,8 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-/00-ProyectoCoder-main
-/00-react-ecommerce-main
+/00-otros
 
 # testing
 /coverage
