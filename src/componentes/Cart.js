@@ -1,23 +1,23 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {useCartContext} from './CartContext'
 import {Link} from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import { addDoc, collection } from 'firebase/firestore'
+import { collection, addDoc} from "firebase/firestore";
 import db from "../services/firebase";
 import { useForm } from "react-hook-form";
 
 
-function Cart() {
+
+export default function Cart() {
   const { cart, removeItem, clear } = useCartContext();
-  const [orderFirebase, setOrder] = useState({id: '', complete: false});
-  const { register, handleSubmit } = useForm();
-  const [data, setData] = useState("");
+  const { register, getValues } = useForm();
+  //https://react-hook-form.com/api/useformcontext
   let total = 0, num = 0;
   
   async function sendOrder(){
     const order = {
-      buyer: {data}, 
+      buyer: getValues(), 
       items:[...cart],
       total: total,
       date: new Date(),
@@ -25,14 +25,12 @@ function Cart() {
     const orderColection = collection(db,"orders");
     const orderTrue = await addDoc(orderColection, order);
 
-    setOrder({id: orderTrue.id, complete: true});
-    alert("Compra confirmada: " + orderFirebase.id);
+    alert("Compra confirmada: " + orderTrue.id);
   }
 
   return (
     <>
       {cart.length === 0 ?
-       
         <div style={{display: 'flex', flexDirection: 'column',  justifyContent:'center', alignItems:'center'}}>
                 <div>
                   <h1 style={{color: 'blue'}}>El carrito esta vacio</h1>
@@ -42,7 +40,6 @@ function Cart() {
                     
                 </div>
         </div>
-       
         :
         <>
         <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
@@ -84,15 +81,13 @@ function Cart() {
           </Table>
           <h5>Total: $ {parseFloat(total).toFixed(2)}</h5>
           <Button variant="danger" onClick={() => { clear() }}>Vaciar Carrito</Button>
-          <div>
-            <form onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
+          <div>1
+            <form>
             <input {...register("firstName", { required: true, maxLength: 20 })} placeholder="First name" />
             <input {...register("lastName", { required: true, maxLength: 20 })} placeholder="Last name" />
             <input {...register("user", { required: true})} placeholder="User" />
             <input type="number"  {...register("phone", { required: true, maxLength: 20 })} placeholder="Phone" />
             <input type="email" {...register("email")} placeholder="correo@correo.com" />
-            <p>{data}</p>
-            <input type="submit" />
             </form>
           </div>
           <Button variant="success" onClick={sendOrder}>Confirmar Compra</Button>
@@ -101,5 +96,3 @@ function Cart() {
     </>
   )
 }
-
-export default Cart
