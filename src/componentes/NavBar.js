@@ -31,12 +31,9 @@ function NavBar(){
                     </NavDropdown>
                 </Nav>
                 <Navbar.Toggle />
-                <Navbar.Collapse className="justify-content-end">
+                <Nav className="justify-content-end">
                     <Link to="/Cart"><CartWidget /></Link>
-                    <Navbar.Text>
-                        <Link to="#login">Iniciar Sesión</Link>
-                    </Navbar.Text>
-                </Navbar.Collapse>
+                </Nav>
             </Container>
         </Navbar>
     </>

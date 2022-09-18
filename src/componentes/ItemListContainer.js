@@ -47,7 +47,7 @@ function ItemListContainer({nombre}){
         
     }, [parametro])
     return (
-        <>
+        <div className="main container mx-auto mt-5">
             <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
                 <h1 style={{color: 'blue'}}>{nombre}</h1>
             </div>
@@ -59,7 +59,7 @@ function ItemListContainer({nombre}){
                     <DotSpinner size={50} speed={0.5} color="black" />
                 </div>
             }
-        </>
+        </div>
     );
 }
 

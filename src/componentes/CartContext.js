@@ -7,22 +7,8 @@ export const CartProvider = ({children}) => {
 
     const [cart, setCart] = useState([]);
     console.log("Carrito", cart)
-
-    /*function addItem(item, quantity){ // agregar cierta cantidad de un ítem al carrito
-        let newCart;
-        let product = cart.find(product => product.id === item.id);
-        if (product) {
-            product.quantity += quantity;
-            newCart =[...cart];
-        }else{
-            product = {...item, quantity: quantity};
-            newCart = [...cart, product];
-        }
-        setCart(newCart);
-    }
-*/
-
-    function addItem(item, quantity) {
+    
+    function addItem(item, quantity) { //agregar item al cart
         if(isInCart(item)){    
             setCart(cart.map(product => {
                 return product.id === item.id ? { ...product, quantity: product.quantity + quantity } : product 

@@ -4,7 +4,7 @@ import ItemCount from './ItemCount'
 
 export default function ItemDetail({dato}) {
   return (
-    <>
+    <div className="main container mx-auto mt-5">
         <h1>Item Datail del {dato.title}</h1>
         <h3>Descripción: {dato.description}</h3>
         <Image src={dato.pictureUrl} alt="Image" />
@@ -12,6 +12,6 @@ export default function ItemDetail({dato}) {
         <p>Cantidad Minima: {dato.min}</p>
         <p>Stock Disponible: {dato.stock}</p>
         <ItemCount item={dato}/>
-    </>
+    </div>
   )
 }

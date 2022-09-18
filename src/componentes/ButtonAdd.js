@@ -15,7 +15,6 @@ function ButtonAdd({total,item}){
             denyButtonText: `Seguir comprando`,
             cancelButtonText: `Cancelar`
           }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
               Swal.fire('Confirmar', '', 'success')
               addItem(item,total);

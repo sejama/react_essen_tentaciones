@@ -7,12 +7,9 @@ import { collection, addDoc} from "firebase/firestore";
 import db from "../services/firebase";
 import { useForm } from "react-hook-form";
 
-
-
 export default function Cart() {
   const { cart, removeItem, clear } = useCartContext();
   const { register, getValues } = useForm();
-  //https://react-hook-form.com/api/useformcontext
   let total = 0, num = 0;
   
   async function sendOrder(){
@@ -29,9 +26,9 @@ export default function Cart() {
   }
 
   return (
-    <>
+     <div className="main container mx-auto mt-5">
       {cart.length === 0 ?
-        <div style={{display: 'flex', flexDirection: 'column',  justifyContent:'center', alignItems:'center'}}>
+        <div className="main container mx-auto mt-5" style={{display: 'flex', flexDirection: 'column',  justifyContent:'center', alignItems:'center'}}>
                 <div>
                   <h1 style={{color: 'blue'}}>El carrito esta vacio</h1>
                 </div>
@@ -41,7 +38,7 @@ export default function Cart() {
                 </div>
         </div>
         :
-        <>
+        <div className="main container mx-auto mt-5">
         <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
                 <h1 style={{color: 'blue'}}>El carrito tiene {cart.length} Elemento</h1>
         </div>
@@ -81,7 +78,7 @@ export default function Cart() {
           </Table>
           <h5>Total: $ {parseFloat(total).toFixed(2)}</h5>
           <Button variant="danger" onClick={() => { clear() }}>Vaciar Carrito</Button>
-          <div>1
+          <div>
             <form>
             <input {...register("firstName", { required: true, maxLength: 20 })} placeholder="First name" />
             <input {...register("lastName", { required: true, maxLength: 20 })} placeholder="Last name" />
@@ -91,8 +88,8 @@ export default function Cart() {
             </form>
           </div>
           <Button variant="success" onClick={sendOrder}>Confirmar Compra</Button>
-        </>    
+        </div>    
       }
-    </>
+    </div>
   )
 }
