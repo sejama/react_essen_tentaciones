@@ -1,9 +1,10 @@
 import Button from 'react-bootstrap/Button';
 import Swal from 'sweetalert2'
-import {useCartContext} from './CartContext'
+import {useCartContext} from './CartContext';
+import {Link} from "react-router-dom";
 
 function ButtonAdd({total,item}){
-  const {addItem} = useCartContext();
+  const {cart, addItem} = useCartContext();
     let texto = "Total "+ total + "de "+ item.title;
     function onAdd(){
         Swal.fire({
@@ -24,6 +25,10 @@ function ButtonAdd({total,item}){
     return (
         <>
             <Button variant="secondary" onClick={onAdd}>Agregar al carrito</Button>
+            {cart.length !== 0 ? 
+             <Link to="/Cart"><Button  className="form-group"  width="auto" height="auto" variant="success">Ir al Carrito</Button></Link>
+             : null}
+            
         </>
     )
 }

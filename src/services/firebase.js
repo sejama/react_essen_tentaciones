@@ -22,8 +22,7 @@ const db = getFirestore(app)
 export async function saveItems(){
   const collectionItems = collection(db,"items");
   for (const item of items) {
-    const respuesta = await addDoc(collectionItems, item)  
-    console.log("Doc agregado: ",respuesta)
+    await addDoc(collectionItems, item);
   }
   
  

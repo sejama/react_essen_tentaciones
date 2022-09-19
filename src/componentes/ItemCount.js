@@ -23,7 +23,7 @@ function ItemCount({item}){
     }
     
     return (
-        <>
+        <div>
             <Container>
                 <Row className="square border border-1" style={{'borderRadius':'5px'}}>
                     <Col className="text-center text-md-right">
@@ -43,7 +43,7 @@ function ItemCount({item}){
                 </Row>
             </Container>
             
-        </>
+        </div>
     )
 }
 export default ItemCount;

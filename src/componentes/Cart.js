@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button';
 import { collection, addDoc} from "firebase/firestore";
 import db from "../services/firebase";
 import { useForm } from "react-hook-form";
+import Swal from 'sweetalert2';
+
 
 export default function Cart() {
   const { cart, removeItem, clear } = useCartContext();
@@ -21,8 +23,19 @@ export default function Cart() {
     }
     const orderColection = collection(db,"orders");
     const orderTrue = await addDoc(orderColection, order);
+    Swal.fire({
+      title: 'Muchas gracias por su compra!!!',
+      text: 'Su compra ha finalizado con exito con el id: ' + orderTrue.id,
+      showDenyButton: false,
+      showCancelButton: false,
+      confirmButtonText: 'Salir',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        clear();
+      } 
+    })
 
-    alert("Compra confirmada: " + orderTrue.id);
+   
   }
 
   return (

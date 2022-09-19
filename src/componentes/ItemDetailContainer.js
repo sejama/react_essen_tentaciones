@@ -12,13 +12,6 @@ function getItem(parametro){
         resolve({...snapshot.data(), id: snapshot.id});
     }).catch(err => reject("Item not found") )
     })
-    //reject("Item not found")
-    /*return new Promise((resolve, reject) => {
-            let itemRequestes = items.find(item => item.id === parametro);
-                  
-            itemRequestes === undefined ? reject("Item not found") :  resolve(itemRequestes); 
-          
-   })  */    
 }
 
 function ItemDetailContainer() {
