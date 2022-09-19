@@ -22,7 +22,7 @@ function NavBar(){
     <>
         <Navbar bg="dark" variant="dark">
             <Container>
-                <Navbar.Brand href="/">Essen Tentaciones</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/" >Essen Tentaciones</Navbar.Brand>
                 <Nav className="me-auto">
                     {menu.map( enlase => <Link to={enlase.url} key={enlase.id} className="nav-link">{enlase.title} </Link>)}
                     <NavDropdown title="Categorias" id="collasible-nav-dropdown">
