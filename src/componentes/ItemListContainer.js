@@ -5,6 +5,7 @@ import { DotSpinner } from '@uiball/loaders';
 import db from '../services/firebase';
 import { getDocs, collection, query, where } from 'firebase/firestore';
 
+
 /*function getItems(){
         
     return new Promise((resolve) => {
@@ -53,7 +54,16 @@ function ItemListContainer({nombre}){
             </div>
             {
             datos.length >0 ?
+                <div  
+                    style={{ 
+                        display: 'flex', 
+                        justifyContent: 'space-evenly', 
+                        alignItems: 'center', 
+                        flexDirection: 'row', 
+                        flexWrap: 'wrap', 
+                        alignContent: 'stretch'}}>
                 <ItemList datos={datos} />
+                </div>
                 :
                 <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
                     <DotSpinner size={50} speed={0.5} color="black" />

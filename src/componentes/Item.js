@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 function Item({dato}) {
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '18rem', margin: '0.4rem'}}>
       <Card.Img variant="top" src={dato.pictureUrl} />
       <Card.Body>
         <Card.Title>{dato.title}</Card.Title>
